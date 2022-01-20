@@ -1,0 +1,21 @@
+<div class="container">
+  <p-carousel *ngIf="(posts | async)! && (posts | async)!.length>0" [value]="(posts | async)!" orientation="vertical"
+    [style]="{'max-width':'950px'}" verticalViewPortHeight="410px" [numVisible]="2" [numScroll]="1"
+    [circular]="isCircular" [autoplayInterval]="interval">
+      <ng-template pTemplate="header">
+          <h5>הודעות</h5>
+      </ng-template>
+      <ng-template let-post pTemplate="item">
+          <div class="post-item">
+              <div class="post-item-content">
+                  <div>
+                      <h6 style="font-size: 18px;">{{post.title}}</h6>
+                      <!-- <p class="p-mb-1">{{post.description}}</p> -->
+                      <p [innerHTML]="post.description | linebreaks" style="font-size: 18px;"> </p>
+                  </div>
+              </div>
+              <span style="font-size: 10px; padding-right: 10px;">נכתב בתאריך {{post.date | date:'dd/MM/yyyy'}} ע"י {{post.user.username}}</span>
+            </div>
+      </ng-template>
+    </p-carousel>
+</div>

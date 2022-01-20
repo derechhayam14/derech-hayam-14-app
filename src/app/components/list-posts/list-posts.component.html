@@ -1,0 +1,90 @@
+<div dir="rtl" class="card">
+  <p-toolbar styleClass="p-mb-4">
+      <ng-template pTemplate="left">
+          <button pButton pRipple label="חדש" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedPosts()" [disabled]="!selectedPosts || !selectedPosts.length"></button>
+      </ng-template>
+
+  </p-toolbar>
+
+  <p-table *ngIf="posts && posts.length>0" #dt [value]="posts" [rows]="10" [globalFilterFields]="['title','description','status']" responsiveLayout="scroll"
+      [(selection)]="selectedPosts" [rowHover]="true" dataKey="id">
+      <ng-template pTemplate="caption">
+          <div class="p-d-flex p-ai-center p-jc-between">
+              <h5 class="p-m-0">ניהול תוכן</h5>
+              <span class="p-input-icon-left">
+                  <i class="pi pi-search"></i>
+                  <!-- <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." /> -->
+                  <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="חיפוש..." />
+              </span>
+          </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+              <th style="width: 3rem">
+                  <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
+              <th style="width:200px; text-align: right;" pSortableColumn="title">נושא <p-sortIcon field="title"></p-sortIcon></th>
+              <th style="width:400px; text-align: right;" pSortableColumn="description">תוכן <p-sortIcon field="description"></p-sortIcon></th>
+              <th style="width:100px; text-align: right;" pSortableColumn="status">סטאטוס <p-sortIcon field="status"></p-sortIcon></th>
+              <th></th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-post>
+          <tr>
+              <td>
+                  <p-tableCheckbox [value]="post"></p-tableCheckbox>
+              </td>
+              <td style="width:200px; text-align: right;">{{post.title}}</td>
+              <td style="width:400px; text-align: right;">{{post.description | truncate:100}}</td>
+              <td style="width:100px; text-align: right;">{{post.status}}</td>
+              <td>
+                  <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editPosts(post)"></button>
+                  <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePosts(post)"></button>
+              </td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+          <div class="p-d-flex p-ai-center p-jc-between">
+              קיימים {{posts ? posts.length : 0 }} תכנים.
+          </div>
+      </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="postsDialog" [style]="{width: '800px'}" header="נתוני תוכן" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <div class="p-field" *ngIf="!isNew" style="width: 200px; padding-right: 10px; padding-left: 10px;">
+      <span>סטאטוס: </span>
+      <p-selectButton [options]="statusOptions"
+      [(ngModel)]="post!.status" optionLabel="label" optionValue="value"
+      ></p-selectButton>
+      <!-- <p-dropdown [(ngModel)]="post!.status" inputId="status" [options]="statuses" placeholder="Select">
+          <ng-template let-option pTemplate="item">
+              <span [class]="'post-badge status-' + option.value">{{option.label}}</span>
+          </ng-template>
+      </p-dropdown> -->
+    </div>
+    <div class="p-field">
+        <label for="title">נושא</label>
+        <input type="text" pInputText id="title" [(ngModel)]="post!.title" required autofocus />
+        <small class="p-error" *ngIf="submitted && !post!.title">נדרש נושא</small>
+    </div>
+    <div class="p-field">
+        <label for="description">תוכן</label>
+        <textarea id="description" pInputTextarea [(ngModel)]="post!.description" required rows="10" cols="30"></textarea>
+        <small class="p-error" *ngIf="submitted && !post!.description">נדרש תוכן</small>
+    </div>
+    <!-- <div class="p-field"> -->
+      <!-- <ckeditor [editor]="Editor" (change)="onChange($event)"></ckeditor> -->
+    <!-- </div> -->
+
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+      <button pButton pRipple label="ביטול" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+      <button pButton pRipple label="שמירה" icon="pi pi-check" class="p-button-text" (click)="savePosts()"></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

@@ -1,0 +1,27 @@
+<div class="p-fluid p-formgrid p-grid">
+  <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" >
+    <div class="p-field p-col-12 p-md-6">
+      <label for="title">נושא</label>
+      <input id="title" type="text" pInputText
+        ngModel name="title" required>
+    </div>
+    <div class="p-field p-col-12">
+      <label for="description">תוכן</label>
+      <textarea id="description" type="text" rows="15" cols="30" pInputTextarea [autoResize]=true
+      ngModel name="description" required></textarea>
+    </div>
+
+    <div>
+      <br>
+      <button pButton pRipple type="submit" label="אישור"
+        class="p-button-raised p-button-text" [disabled]="!authForm.valid">
+      </button>
+      <button pButton pRipple type="button" label="ביטול"
+      class="p-button-raised p-button-danger p-button-text"
+      (click)="onCancel()">
+      </button>
+    </div>
+  </form>
+
+</div>
+
