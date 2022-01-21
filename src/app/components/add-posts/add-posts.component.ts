@@ -31,7 +31,8 @@ export class AddPostsComponent implements OnInit, OnDestroy {
       .subscribe(
       resData => {
         this.messageService.add({severity:'success', summary: 'Success', detail:'עודכן בהצלחה'});
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
+        // this.router.navigate(['/home']);
       },
       errorMessage => {
         console.log(errorMessage);
@@ -43,7 +44,8 @@ export class AddPostsComponent implements OnInit, OnDestroy {
   }
 
   onCancel() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
+    // this.router.navigate(['/home']);
   }
 
   ngOnDestroy() {

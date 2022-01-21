@@ -38,8 +38,9 @@ import { TruncatePipe } from './truncate.pipe';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  // { path: '', redirectTo: '/home', pathMatch: 'full' },
+  // { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'add-posts', component: AddPostsComponent, canActivate: [AuthGuard] },
   { path: 'posts', component: ListPostsComponent, canActivate: [AuthGuard] },
