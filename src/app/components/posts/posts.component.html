@@ -1,9 +1,9 @@
 <div class="container">
   <p-carousel *ngIf="(posts | async)! && (posts | async)!.length>0" [value]="(posts | async)!" orientation="vertical"
-    [style]="{'max-width':'950px'}" verticalViewPortHeight="410px" [numVisible]="2" [numScroll]="1"
+    [style]="{'max-width':'950px'}" verticalViewPortHeight="410px" [numVisible]="2" [numScroll]="2"
     [circular]="isCircular" [autoplayInterval]="interval">
       <ng-template pTemplate="header">
-          <h5>הודעות</h5>
+          <h5>הודעות ({{length}})</h5>
       </ng-template>
       <ng-template let-post pTemplate="item">
           <div class="post-item">

@@ -13,7 +13,7 @@ export class PostsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   posts = new BehaviorSubject<Posts[] | null>(null);
   isCircular = true;
-  interval = 3000;
+  interval = 6000;
   length = 0;
   idTimer: any;
   intervalTime = 30;
