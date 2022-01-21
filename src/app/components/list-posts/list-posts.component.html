@@ -21,13 +21,13 @@
       </ng-template>
       <ng-template pTemplate="header">
           <tr>
-              <th style="width: 3rem">
+              <th style="width: 2rem">
                   <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
               </th>
-              <th style="width:200px; text-align: right;" pSortableColumn="title">נושא <p-sortIcon field="title"></p-sortIcon></th>
-              <th style="width:400px; text-align: right;" pSortableColumn="description">תוכן <p-sortIcon field="description"></p-sortIcon></th>
-              <th style="width:100px; text-align: right;" pSortableColumn="status">סטאטוס <p-sortIcon field="status"></p-sortIcon></th>
-              <th></th>
+              <th style="width: 120px; text-align: center;">פעולות</th>
+              <th style="width: 200px; text-align: right;" pSortableColumn="title">נושא <p-sortIcon field="title"></p-sortIcon></th>
+              <th style="width: 400px; text-align: right;" pSortableColumn="description">תוכן <p-sortIcon field="description"></p-sortIcon></th>
+              <th style="width: 100px; text-align: right;" pSortableColumn="status">סטאטוס <p-sortIcon field="status"></p-sortIcon></th>
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-post>
@@ -35,13 +35,13 @@
               <td>
                   <p-tableCheckbox [value]="post"></p-tableCheckbox>
               </td>
+              <td style="width:120px; text-align: right;">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editPosts(post)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePosts(post)"></button>
+              </td>
               <td style="width:200px; text-align: right;">{{post.title}}</td>
               <td style="width:400px; text-align: right;">{{post.description | truncate:100}}</td>
               <td style="width:100px; text-align: right;">{{post.status}}</td>
-              <td>
-                  <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editPosts(post)"></button>
-                  <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePosts(post)"></button>
-              </td>
           </tr>
       </ng-template>
       <ng-template pTemplate="summary">
