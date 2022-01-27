@@ -13,7 +13,7 @@
                       <!-- <p class="p-mb-1">{{post.description}}</p> -->
                       <p [innerHTML]="post.description | linebreaks" style="font-size: 18px;"> </p>
                   </div>
-                  <span style="font-size: 10px; padding-right: 10px;">נכתב בתאריך {{post.date | date:'dd/MM/yyyy'}} ע"י {{post.user.username}}</span>
+                  <span style="font-size: 10px;">נכתב ב {{post.date | date:'dd/MM/yyyy'}} ע"י {{post.user.username}}</span>
                 </div>
             </div>
       </ng-template>
