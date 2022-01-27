@@ -17,13 +17,18 @@ export class AppComponent implements OnInit {
 
   constructor(private domSanitizer : DomSanitizer,
     private router: Router,
-    private auth: AuthService) {}
+    private auth: AuthService,
+    private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     // this.domSanitizer.bypassSecurityTrustUrl(this.pdfSrc);
     // this.domSanitizer.bypassSecurityTrustResourceUrl(this.pdfSrc);
     this.auth.autoLogin();
     this.isLoginUser()
+  }
+  sanitize(url:string){
+    console.log(url);
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   onSignIn() {

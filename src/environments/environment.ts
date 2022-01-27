@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3111/api/'
+  // apiUrl: 'http://localhost:3111/api/'
+  apiUrl: 'https://derech-hayam-14.herokuapp.com/api/'
 };
 
 /*

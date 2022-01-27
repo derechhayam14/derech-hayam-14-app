@@ -36,6 +36,7 @@ import { LinebreaksPipe } from './linebreaks.pipe';
 import { ListPostsComponent } from './components/list-posts/list-posts.component';
 import { TruncatePipe } from './truncate.pipe';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { SafeUrlPipe } from './safe-url.pipe';
 
 const routes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -57,6 +58,7 @@ const routes: Routes = [
     LinebreaksPipe,
     ListPostsComponent,
     TruncatePipe,
+    SafeUrlPipe,
   ],
   imports: [
     RouterModule.forRoot(routes),

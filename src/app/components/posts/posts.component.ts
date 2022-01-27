@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Posts } from 'src/app/models/posts.model';
 import { PostsService } from 'src/app/services/posts.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-posts',
@@ -17,13 +18,19 @@ export class PostsComponent implements OnInit, OnDestroy {
   length = 0;
   idTimer: any;
   intervalTime = 30;
-  constructor(private postsService: PostsService) { }
+  constructor(private postsService: PostsService,
+    private sanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
     this.getPosts();
     this.idTimer = setInterval(() => {
       this.getPosts();
     }, this.intervalTime * 1000);
+  }
+
+  sanitize(url:string){
+    console.log(url);
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   getPosts() {
