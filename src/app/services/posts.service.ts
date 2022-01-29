@@ -11,7 +11,8 @@ export class PostsService {
 
   constructor(private http: HttpClient) { }
   getPosts() {
-    return this.http.get<any>(`${environment.apiUrl}posts/with-user?status=פתוח`);
+    // return this.http.get<any>(`${environment.apiUrl}posts/with-user?status=פתוח`);
+    return this.http.get<any>(`${environment.apiUrl}posts/?status=פתוח`);
     // .pipe(
     //   map(data => {
     //     return data.map((p: any) => {

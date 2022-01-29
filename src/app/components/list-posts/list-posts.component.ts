@@ -58,6 +58,7 @@ export class ListPostsComponent implements OnInit, OnDestroy {
     let subscriptionPosts: Subscription;
     subscriptionPosts = this.postsService.getPostsByUser()
     .subscribe(posts => {
+      posts.sort((a: Posts ,b: Posts ) => (a.date! > b.date!) ? 1 : ((b.date! > a.date!) ? -1 : 0))
       // console.log(posts);
 			this.posts = posts;
 		});

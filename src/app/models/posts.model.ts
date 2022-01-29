@@ -5,5 +5,6 @@ export interface Posts {
   title: string;
   description: string;
   status?: string;
+  date?: Date;
   user?: User
 }

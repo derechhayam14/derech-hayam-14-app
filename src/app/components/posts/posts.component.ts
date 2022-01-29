@@ -14,7 +14,7 @@ export class PostsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   posts = new BehaviorSubject<Posts[] | null>(null);
   isCircular = true;
-  interval = 6000;
+  interval = 10000;
   length = 0;
   idTimer: any;
   intervalTime = 30;
@@ -37,6 +37,8 @@ export class PostsComponent implements OnInit, OnDestroy {
     let subscriptionPosts: Subscription;
     subscriptionPosts = this.postsService.getPosts()
     .subscribe(posts => {
+      // console.log(posts);
+      posts.sort((a: Posts ,b: Posts ) => (a.date! > b.date!) ? 1 : ((b.date! > a.date!) ? -1 : 0))
       // console.log(posts);
 			this.posts.next(posts);
       this.length = posts.length;
