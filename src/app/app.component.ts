@@ -60,7 +60,8 @@ export class AppComponent implements OnInit {
       // console.log(u);
       if (u) {
         this.isUserUpdate = true;
-        this.username = `שלום ${u.username}`;
+        // this.username = u.username;
+        // this.username = `שלום ${u.username}`;
       }
     });
   }
